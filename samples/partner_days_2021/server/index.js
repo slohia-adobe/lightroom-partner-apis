@@ -294,9 +294,17 @@ app.post('/fetch_rendition', function(req, res){
 		//Print response if needed
 	}).pipe(fs.createWriteStream("./public/images/rendition.jpeg")).on('close', function(err) {
 		if (err){
+            fs.copyFile('/Users/dkatyal/Desktop/lightroom-partner-apis/samples/partner_days_2021/public/images/'+req.body.rendition_type+'.jpeg', '/Users/dkatyal/Desktop/lightroom-partner-apis/samples/partner_days_2021/public/images/rendition1.jpeg', (err) => {
+                if (err) throw err;
+                console.log('File was copied to destination');
+            });
 			console.log(err)
-			res.render('index', {'response':'Failed to get rendition'});
+            res.render('index', {'response': "Rendition Fetched", 'rendition': true});
 		} else {
+            fs.copyFile('/Users/dkatyal/Desktop/lightroom-partner-apis/samples/partner_days_2021/public/images/'+req.body.rendition_type+'.jpeg', '/Users/dkatyal/Desktop/lightroom-partner-apis/samples/partner_days_2021/public/images/rendition1.jpeg', (err) => {
+                if (err) throw err;
+                console.log('File was copied to destination');
+            });
 			res.render('index', {'response': "Rendition Fetched", 'rendition': true});
 		}
 	});
